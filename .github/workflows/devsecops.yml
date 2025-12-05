@@ -2,57 +2,18 @@
 name: DevGuard DevSecOps
 
 on:
-  push:
+    push:
 
 permissions:
-  contents: read
-  packages: write
+    contents: read
+    packages: write
 
 jobs:
-    find-leaked-secrets:
-        uses: l3montree-dev/devguard-action/.github/workflows/secret-scanning.yml@main
+    call-devsecops:
+        uses: l3montree-dev/devguard-action/.github/workflows/full.yml@main
         with:
-            asset-name: "neworg/projects/testgroup/assets/testrepo"
-            api-url: https://api.devguard.org
-        secrets:
-            devguard-token: "${{ secrets.DEVGUARD_TOKEN }}" # you need to create this secret in your GitHub repository settings
-
-    dependency-scanning:
-        uses: l3montree-dev/devguard-action/.github/workflows/software-composition-analysis.yml@main
-        with:
-            asset-name: "neworg/projects/testgroup/assets/testrepo"
-            api-url: https://api.devguard.org
-        secrets:
-            devguard-token: "${{ secrets.DEVGUARD_TOKEN }}" # you need to create this secret in your GitHub repository settings
-
-    container-scanning:
-        uses: l3montree-dev/devguard-action/.github/workflows/container-scanning.yml@main
-        with:
-            asset-name: "neworg/projects/testgroup/assets/testrepo"
-            api-url: https://api.devguard.org
-        secrets:
-            devguard-token: "${{ secrets.DEVGUARD_TOKEN }}" # you need to create this secret in your GitHub repository settings
-
-    bad-practice-finder:
-        uses: l3montree-dev/devguard-action/.github/workflows/sast.yml@main
-        with:
-            asset-name: "neworg/projects/testgroup/assets/testrepo"
-            api-url: https://api.devguard.org
-        secrets:
-            devguard-token: "${{ secrets.DEVGUARD_TOKEN }}" # you need to create this secret in your GitHub repository settings
-
-    infrastructure-as-code-scanning:
-        uses: l3montree-dev/devguard-action/.github/workflows/iac.yml@main
-        with:
-            asset-name: "neworg/projects/testgroup/assets/testrepo"
-            api-url: https://api.devguard.org
-        secrets:
-            devguard-token: "${{ secrets.DEVGUARD_TOKEN }}" # you need to create this secret in your GitHub repository settings
-
-    build-image:
-        uses: l3montree-dev/devguard-action/.github/workflows/build-image.yml@main
-        with:
-            asset-name: "neworg/projects/testgroup/assets/testrepo"
-            api-url: https://api.devguard.org
+            asset-name: "test-org/projects/test-group/assets/test-repository"
+            api-url: "https://api.stage.devguard.orgç"
+            web-ui: "https://app.devguard.org"
         secrets:
             devguard-token: "${{ secrets.DEVGUARD_TOKEN }}" # you need to create this secret in your GitHub repository settings 
